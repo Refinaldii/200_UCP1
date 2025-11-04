@@ -60,3 +60,15 @@ app.delete('/kandang/:id', async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
+
+// ======================= SERVER START =======================
+db.sequelize
+  .sync()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`✅ Server is running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log('❌ Database connection error:', err.message);
+  });
