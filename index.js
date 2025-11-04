@@ -16,3 +16,14 @@ app.get('/kandang', async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
+
+// POST tambah komik
+app.post('/kandang', async (req, res) => {
+  const data = req.body;
+  try {
+    const kandang = await db.kandang.create(data);
+    res.status(201).send(kandang);
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+});
